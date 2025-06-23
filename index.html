@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VantaFuel Supplements</title>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        padding-top: 56px;
+        background-color: #1e1e1e;
+        color: white;
+        transition: all 0.5s ease;
+      }
+
+      body.light-mode {
+        background-color: #f8f9fa;
+        color: #212529;
+      }
+
+      .light-mode .product-card {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        color: #212529;
+      }
+
+      .light-mode .no-focus {
+        background-color: #f8f9fa;
+      }
+
+      .no-focus:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        background-color: #2a2a2a;
+      }
+      .no-focus {
+        background-color: #313030;
+        border: none;
+      }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 1.2s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .letter-spacing {
+        letter-spacing: 2px;
+      }
+
+      .product-card {
+        position: relative;
+        border: 1px solid #333;
+        background-color: #000;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-img-container {
+        height: 180px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 20px;
+        position: relative;
+      }
+
+      .product-img {
+        max-height: 150px;
+        width: auto;
+        max-width: 80%;
+        transition: transform 0.4s ease;
+        object-fit: contain;
+      }
+
+      .product-img:hover {
+        transform: scale(1.25);
+        z-index: 2;
+        filter: drop-shadow(0px 4px 10px rgba(255, 255, 255, 0.2));
+      }
+
+      .btn-outline-light:hover {
+        background-color: white;
+        color: black;
+        transition: 0.3s;
+      }
+
+      .card-body {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .card-text {
+        flex-grow: 1;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 1rem;
+      }
+
+      .light-mode .price {
+        color: #000000;
+      }
+
+      .theme-toggle {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      .newsletter-input {
+        border-radius: 0;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+
+      .newsletter-btn {
+        border-radius: 0;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      .social-icon {
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-3px);
+        color: #ff6b6b !important;
+      }
+
+      .light-mode .social-icon:hover {
+        color: #dc3545 !important;
+      }
+
+      .footer-link {
+        transition: color 0.3s ease;
+      }
+
+      .footer-link:hover {
+        color: #ff6b6b !important;
+      }
+
+      .light-mode .footer-link:hover {
+        color: #dc3545 !important;
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      .light-mode .btn-outline-light {
+        border-color: #212529;
+        color: #212529;
+      }
+
+      .light-mode .btn-outline-light:hover {
+        background-color: #212529;
+        color: white;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!---------------NAV-BAR-------------------->
+    <nav
+      id="mainNavbar"
+      class="navbar navbar-expand-lg bg-black border-body fixed-top"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler d-block me-3"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasDarkNavbar"
+          aria-controls="offcanvasDarkNavbar"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">VantaFuel</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Deals</a>
+            </li>
+            <!-------------Dropdown-Nav-Bar----------------->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
+              </a>
+              <ul class="dropdown-menu bg-black">
+                <li>
+                  <a class="dropdown-item text-white" href="#">Protein</a>
+                </li>
+                <li>
+                  <a class="dropdown-item text-white" href="#">Pre-workout</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item text-white" href="#">Creatine</a>
+                </li>
+                <li>
+                  <a class="dropdown-item text-white" href="#">Fat Burner</a>
+                </li>
+
+                <hr
+                  class="dropdown-divider"
+                  style="border-top: 1px solid rgb(71, 71, 71)"
+                />
+                <li>
+                  <a class="dropdown-item text-white" href="#"
+                    >Something else here</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link d-flex align-items-center" href="#">
+                <img
+                  src="proteinicon.PNG"
+                  alt="supplements"
+                  width="30"
+                  class="me-2"
+                />
+                My Supplements
+              </a>
+            </li>
+          </ul>
+
+          <!------------------Search-BAR-NAV------------------>
+
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2 no-focus"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button type="button" class="btn btn-outline-light">Search</button>
+          </form>
+
+          <!-- Theme Toggle -->
+          <div class="ms-3 theme-toggle" id="themeToggle">
+            <i class="bi bi-sun-fill text-white" style="font-size: 1.2rem"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--------------OFF-CANVAS---------------->
+    <div
+      class="offcanvas offcanvas-start text-bg-dark bg-black"
+      data-bs-theme="dark"
+      tabindex="-1"
+      id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">VantaFuel</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <!-- Home -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+
+          <!-- Shop -->
+          <li class="nav-item">
+            <a class="nav-link" href="#products">Shop</a>
+          </li>
+
+          <!-- Bundles -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="bundlesDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Bundles
+            </a>
+            <ul
+              class="dropdown-menu bg-black"
+              aria-labelledby="bundlesDropdown"
+            >
+              <li>
+                <a class="dropdown-item text-white" href="#"
+                  >Protein x Creatine</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item text-white" href="#"
+                  >Preworkout x BCAA</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item text-white" href="#"
+                  >Protein x Fat Burner</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <!-- Build Your Bundle -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Build Your Bundle</a>
+          </li>
+        </ul>
+
+        <!-- Search bar -->
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2 no-focus"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button type="button" class="btn btn-outline-light">Search</button>
+        </form>
+
+        <!-- Divider -->
+        <hr class="my-4" style="border-top: 1px solid rgb(71, 71, 71)" />
+
+        <!-- Contact -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#footer">Contact Us!</a>
+          </li>
+        </ul>
+      </div>
+      <div class="text-center mt-4">
+        <a href="https://instagram.com" target="_blank" class="text-white me-3">
+          <i class="bi bi-instagram social-icon"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" class="text-white">
+          <i class="bi bi-facebook social-icon"></i>
+        </a>
+      </div>
+    </div>
+    <!-----Hero-Section----------------------->
+    <div style="line-height: 0" class="position-relative">
+      <video
+        src="videohero.mp4"
+        class="object-fit-cover w-100"
+        autoplay
+        muted
+        loop
+        style="height: 400px"
+      ></video>
+      <div
+        class="position-absolute bottom-0 start-50 translate-middle fade-in"
+        style="margin-bottom: 30px"
+      >
+        <h5
+          class="bg-black bg-opacity-75 px-3 py-2 rounded"
+          style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); color: #fffdfd"
+        >
+          -Go Deeper. Train Darker.
+        </h5>
+      </div>
+      <div
+        class="position-absolute bottom-0 start-50 translate-middle-x mb-2 fade-in"
+      >
+        <a href="#products" class="btn btn-outline-light btn-lg">Shop Now!</a>
+      </div>
+    </div>
+    <!----------OUR PRODUCTS-TEXT------------>
+    <hr style="border-top: 1px solid #555; width: 80%; margin: 3rem auto" />
+    <div id="products" class="text-center mb-5">
+      <h2 class="fw-bold letter-spacing">OUR PRODUCTS</h2>
+    </div>
+
+    <!----Card-Layout---------------->
+    <div class="container mt-5">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+        <!-- Card 1 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img
+                src="proteins.png"
+                class="product-img"
+                alt="Protein Powder"
+              />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">Gold Standard Whey</h5>
+              <p class="card-text text-center">
+                24g blended whey protein to support lean muscle.
+              </p>
+              <div class="price text-center">$49.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img src="GHOST PRE.png" class="product-img" alt="Pre-Workout" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">Ghost Pre-Workout</h5>
+              <p class="card-text text-center">
+                Powerful energy and focus for intense training sessions.
+              </p>
+              <div class="price text-center">$39.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img src="BCAA.png" class="product-img" alt="BCAA" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">BCAA Complex</h5>
+              <p class="card-text text-center">
+                Essential amino acids for muscle recovery and growth.
+              </p>
+              <div class="price text-center">$29.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img src="Subject.png" class="product-img" alt="Creatine" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">
+                Creatine Monohydrate
+              </h5>
+              <p class="card-text text-center">
+                Pure creatine for increased strength and power output.
+              </p>
+              <div class="price text-center">$24.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img src="ISO100.png" class="product-img" alt="Protein Powder" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">ISOO100 Protein</h5>
+              <p class="card-text text-center">
+                Ultra-fast absorbing whey isolate for lean muscle growth and
+                recovery.
+              </p>
+              <div class="price text-center">$59.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img
+                src="massgainer.png"
+                class="product-img"
+                alt="Protein Powder"
+              />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">Mass Gainer</h5>
+              <p class="card-text text-center">
+                High-calorie formula for serious weight gain.
+              </p>
+              <div class="price text-center">$54.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img src="ANIMAL.png" class="product-img" alt="Protein Powder" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">Animal Cuts</h5>
+              <p class="card-text text-center">
+                Extreme fat-burning formula for serious shredding and
+                definition.
+              </p>
+              <div class="price text-center">$44.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="col">
+          <div class="card product-card h-100">
+            <div class="card-img-container">
+              <img src="c4.png" class="product-img" alt="Creatine" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">C4 Preworkout</h5>
+              <p class="card-text text-center">
+                Explosive energy, focus, and endurance to power through intense
+                workouts.
+              </p>
+              <div class="price text-center">$34.99</div>
+              <div class="text-center mt-auto">
+                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                  >Add To Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 100px"></div>
+
+    <!-- Improved Footer -->
+    <footer id="footer" class="py-5 bg-black text-white">
+      <div class="container">
+        <div class="row">
+          <!-- Newsletter Column -->
+          <div class="col-md-4 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Join Our Newsletter</h5>
+            <p class="small text-white">
+              Get exclusive deals, new product alerts, and fitness tips straight
+              to your inbox.
+            </p>
+            <div class="input-group mb-3">
+              <input
+                type="email"
+                class="form-control no-focus newsletter-input"
+                placeholder="Your email"
+                aria-label="Your email"
+              />
+              <button
+                class="btn btn-outline-light newsletter-btn"
+                type="button"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Links Column -->
+          <div class="col-md-2 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="text-white text-decoration-none footer-link"
+                  >Home</a
+                >
+              </li>
+              <li class="mb-2">
+                <a
+                  href="#products"
+                  class="text-white text-decoration-none footer-link"
+                  >Shop</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white text-decoration-none footer-link"
+                  >About Us</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white text-decoration-none footer-link"
+                  >Contact</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white text-decoration-none footer-link"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Column -->
+          <div class="col-md-3 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Contact Us</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <i class="bi bi-geo-alt-fill me-2"></i> 123 Fitness St, Gym City
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-telephone-fill me-2"></i> (555) 123-4567
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-envelope-fill me-2"></i> info@vantafuel.com
+              </li>
+            </ul>
+          </div>
+
+          <!-- Social Media Column -->
+          <div class="col-md-3">
+            <h5 class="text-uppercase mb-4">Follow Us</h5>
+            <div class="mb-4">
+              <a href="#" class="text-white me-3">
+                <i class="bi bi-instagram social-icon"></i>
+              </a>
+              <a href="#" class="text-white me-3">
+                <i class="bi bi-facebook social-icon"></i>
+              </a>
+              <a href="#" class="text-white me-3">
+                <i class="bi bi-twitter social-icon"></i>
+              </a>
+              <a href="#" class="text-white">
+                <i class="bi bi-tiktok social-icon"></i>
+              </a>
+            </div>
+            <h5 class="text-uppercase mb-3">Payment Methods</h5>
+            <div>
+              <i class="bi bi-credit-card me-2" style="font-size: 1.5rem"></i>
+              <i class="bi bi-paypal me-2" style="font-size: 1.5rem"></i>
+              <i class="bi bi-currency-bitcoin" style="font-size: 1.5rem"></i>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4 border-secondary" />
+
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="small mb-0">
+              © 2025 VantaFuel Supplements. All rights reserved.
+            </p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <p class="small mb-0">
+              <a href="#" class="text-white text-decoration-none footer-link"
+                >Privacy Policy</a
+              >
+              |
+              <a href="#" class="text-white text-decoration-none footer-link"
+                >Terms of Service</a
+              >
+              |
+              <a href="#" class="text-white text-decoration-none footer-link"
+                >Shipping Policy</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Theme Toggle Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeToggle = document.getElementById("themeToggle");
+        const body = document.body;
+
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        if (savedTheme === "light" || (!savedTheme && !prefersDark)) {
+          body.classList.add("light-mode");
+          themeToggle.innerHTML =
+            '<i class="bi bi-moon-fill text-dark" style="font-size: 1.2rem;"></i>';
+          // Switch theme-sensitive buttons to dark on initial load
+          document.querySelectorAll(".btn-theme-toggle").forEach((btn) => {
+            btn.classList.remove("btn-outline-light");
+            btn.classList.add("btn-outline-dark");
+          });
+        }
+
+        themeToggle.addEventListener("click", function () {
+          if (body.classList.contains("light-mode")) {
+            body.classList.remove("light-mode");
+            localStorage.setItem("theme", "dark");
+            themeToggle.innerHTML =
+              '<i class="bi bi-sun-fill text-white" style="font-size: 1.2rem;"></i>';
+            // Switch all theme-sensitive buttons
+            document.querySelectorAll(".btn-theme-toggle").forEach((btn) => {
+              btn.classList.remove("btn-outline-dark");
+              btn.classList.add("btn-outline-light");
+            });
+          } else {
+            body.classList.add("light-mode");
+            localStorage.setItem("theme", "light");
+            themeToggle.innerHTML =
+              '<i class="bi bi-moon-fill text-dark" style="font-size: 1.2rem;"></i>';
+            // Switch all theme-sensitive buttons
+            document.querySelectorAll(".btn-theme-toggle").forEach((btn) => {
+              btn.classList.remove("btn-outline-light");
+              btn.classList.add("btn-outline-dark");
+            });
+          }
+        });
+
+        // Add animation to cards when they come into view
+        const observerOptions = {
+          threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add(
+                "animate__animated",
+                "animate__fadeInUp"
+              );
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".product-card").forEach((card) => {
+          observer.observe(card);
+        });
+      });
+    </script>
+
+    <!-- Animate.css for additional animations -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </body>
+</html>

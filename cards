@@ -1,0 +1,149 @@
+<div class="container mt-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+    <!-- Card 1 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="proteins.png" class="product-img" alt="Protein Powder" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">Gold Standard Whey</h5>
+          <p class="card-text text-center">
+            24g blended whey protein to support lean muscle.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="GHOST PRE.png" class="product-img" alt="Pre-Workout" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">Ghost Pre-Workout</h5>
+          <p class="card-text text-center">
+            Powerful energy and focus for intense training sessions.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="BCAA.png" class="product-img" alt="BCAA" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">BCAA Complex</h5>
+          <p class="card-text text-center">
+            Essential amino acids for muscle recovery and growth.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="Subject.png" class="product-img" alt="Creatine" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">Creatine Monohydrate</h5>
+          <p class="card-text text-center">
+            Pure creatine for increased strength and power output.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="ISO100.png" class="product-img" alt="Protein Powder" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">ISOO100 Protein</h5>
+          <p class="card-text text-center">
+            Ultra-fast absorbing whey isolate for lean muscle growth and
+            recovery.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="massgainer.png" class="product-img" alt="Protein Powder" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">Mass Gainer</h5>
+          <p class="card-text text-center">
+            High-calorie formula for serious weight gain.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="ANIMAL.png" class="product-img" alt="Protein Powder" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">Animal Cuts</h5>
+          <p class="card-text text-center">
+            Extreme fat-burning formula for serious shredding and definition.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="col">
+      <div class="card product-card h-100">
+        <div class="card-img-container">
+          <img src="c4.png" class="product-img" alt="Creatine" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-center">C4 Preworkout</h5>
+          <p class="card-text text-center">
+            Explosive energy, focus, and endurance to power through intense
+            workouts.
+          </p>
+          <div class="text-center mt-auto">
+            <a href="#" class="btn btn-outline-light">Add To Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
