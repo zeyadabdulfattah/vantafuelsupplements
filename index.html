@@ -18,8 +18,7 @@
     ></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Supplements Store
-    </title>
+    <title>VantaFuel Supplements</title>
 
     <style>
       html {
@@ -218,10 +217,91 @@
           transform: scale(1);
         }
       }
+
+      /* Sticky Navbar Styles */
+      .navbar.scrolled {
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.9
+        ) !important; /* Slightly transparent black */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease-in-out,
+          box-shadow 0.3s ease-in-out;
+      }
+
+      body.light-mode .navbar.scrolled {
+        background-color: rgba(
+          248,
+          249,
+          250,
+          0.9
+        ) !important; /* Slightly transparent light */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Cart Notification */
+      .cart-notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #28a745; /* Green color */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        z-index: 1050;
+        display: flex;
+        align-items: center;
+      }
+
+      .cart-notification.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .cart-notification .bi {
+        margin-right: 8px;
+      }
+
+      /* Testimonial Section */
+      .testimonial-card {
+        background-color: #000;
+        border: 1px solid #333;
+        padding: 25px;
+        border-radius: 8px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .light-mode .testimonial-card {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        color: #212529;
+      }
+
+      .testimonial-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #ff6b6b;
+      }
+
+      .light-mode .testimonial-img {
+        border: 3px solid #dc3545;
+      }
     </style>
   </head>
   <body>
-    <!---------------NAV-BAR-------------------->
     <nav
       id="mainNavbar"
       class="navbar navbar-expand-lg bg-black border-body fixed-top"
@@ -259,7 +339,6 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Deals</a>
             </li>
-            <!-------------Dropdown-Nav-Bar----------------->
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -309,8 +388,6 @@
             </li>
           </ul>
 
-          <!------------------Search-BAR-NAV------------------>
-
           <form class="d-flex" role="search">
             <input
               class="form-control me-2 no-focus"
@@ -321,14 +398,12 @@
             <button type="button" class="btn btn-outline-light">Search</button>
           </form>
 
-          <!-- Theme Toggle -->
           <div class="ms-3 theme-toggle" id="themeToggle">
             <i class="bi bi-sun-fill text-white" style="font-size: 1.2rem"></i>
           </div>
         </div>
       </div>
     </nav>
-    <!--------------OFF-CANVAS---------------->
     <div
       class="offcanvas offcanvas-start text-bg-dark bg-black"
       data-bs-theme="dark"
@@ -348,17 +423,14 @@
 
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <!-- Home -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
 
-          <!-- Shop -->
           <li class="nav-item">
             <a class="nav-link" href="#products">Shop</a>
           </li>
 
-          <!-- Bundles -->
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -392,13 +464,11 @@
             </ul>
           </li>
 
-          <!-- Build Your Bundle -->
           <li class="nav-item">
             <a class="nav-link" href="#">Build Your Bundle</a>
           </li>
         </ul>
 
-        <!-- Search bar -->
         <form class="d-flex" role="search">
           <input
             class="form-control me-2 no-focus"
@@ -409,10 +479,8 @@
           <button type="button" class="btn btn-outline-light">Search</button>
         </form>
 
-        <!-- Divider -->
         <hr class="my-4" style="border-top: 1px solid rgb(71, 71, 71)" />
 
-        <!-- Contact -->
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#footer">Contact Us!</a>
@@ -428,7 +496,6 @@
         </a>
       </div>
     </div>
-    <!-----Hero-Section----------------------->
     <div style="line-height: 0" class="position-relative">
       <video
         src="videohero.mp4"
@@ -455,17 +522,56 @@
         <a href="#products" class="btn btn-outline-light btn-lg">Shop Now!</a>
       </div>
     </div>
-    <!----------OUR PRODUCTS-TEXT------------>
     <hr style="border-top: 1px solid #555; width: 80%; margin: 3rem auto" />
     <div id="products" class="text-center mb-5">
       <h2 class="fw-bold letter-spacing">OUR PRODUCTS</h2>
     </div>
 
-    <!----Card-Layout---------------->
+    <div class="container mb-4">
+      <div class="d-flex justify-content-center flex-wrap gap-2">
+        <button
+          class="btn btn-outline-light filter-btn"
+          data-filter="all"
+          aria-pressed="true"
+        >
+          All
+        </button>
+        <button class="btn btn-outline-light filter-btn" data-filter="protein">
+          Protein
+        </button>
+        <button class="btn btn-outline-light filter-btn" data-filter="creatine">
+          Creatine
+        </button>
+        <button
+          class="btn btn-outline-light filter-btn"
+          data-filter="pre-workout"
+        >
+          Pre-Workout
+        </button>
+        <button class="btn btn-outline-light filter-btn" data-filter="bcaa">
+          BCAA
+        </button>
+        <button
+          class="btn btn-outline-light filter-btn"
+          data-filter="fat-burner"
+        >
+          Fat Burner
+        </button>
+        <button
+          class="btn btn-outline-light filter-btn"
+          data-filter="mass-gainer"
+        >
+          Mass Gainer
+        </button>
+      </div>
+    </div>
+
     <div class="container mt-5">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-        <!-- Card 1 -->
-        <div class="col">
+      <div
+        class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4"
+        id="productGrid"
+      >
+        <div class="col product-item" data-category="protein">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img
@@ -481,7 +587,9 @@
               </p>
               <div class="price text-center">$49.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -489,8 +597,7 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="col">
+        <div class="col product-item" data-category="pre-workout">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img src="GHOST PRE.png" class="product-img" alt="Pre-Workout" />
@@ -502,7 +609,9 @@
               </p>
               <div class="price text-center">$39.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -510,8 +619,7 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="col">
+        <div class="col product-item" data-category="bcaa">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img src="BCAA.png" class="product-img" alt="BCAA" />
@@ -523,7 +631,9 @@
               </p>
               <div class="price text-center">$29.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -531,8 +641,7 @@
           </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="col">
+        <div class="col product-item" data-category="creatine">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img src="Subject.png" class="product-img" alt="Creatine" />
@@ -546,7 +655,9 @@
               </p>
               <div class="price text-center">$24.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -554,8 +665,7 @@
           </div>
         </div>
 
-        <!-- Card 5 -->
-        <div class="col">
+        <div class="col product-item" data-category="protein">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img src="ISO100.png" class="product-img" alt="Protein Powder" />
@@ -568,7 +678,9 @@
               </p>
               <div class="price text-center">$59.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -576,8 +688,7 @@
           </div>
         </div>
 
-        <!-- Card 6 -->
-        <div class="col">
+        <div class="col product-item" data-category="mass-gainer">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img
@@ -593,7 +704,9 @@
               </p>
               <div class="price text-center">$54.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -601,8 +714,7 @@
           </div>
         </div>
 
-        <!-- Card 7 -->
-        <div class="col">
+        <div class="col product-item" data-category="fat-burner">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img src="ANIMAL.png" class="product-img" alt="Protein Powder" />
@@ -615,7 +727,9 @@
               </p>
               <div class="price text-center">$44.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -623,8 +737,7 @@
           </div>
         </div>
 
-        <!-- Card 8 -->
-        <div class="col">
+        <div class="col product-item" data-category="pre-workout">
           <div class="card product-card h-100">
             <div class="card-img-container">
               <img src="c4.png" class="product-img" alt="Creatine" />
@@ -637,7 +750,9 @@
               </p>
               <div class="price text-center">$34.99</div>
               <div class="text-center mt-auto">
-                <a href="#" class="btn btn-outline-light btn-theme-toggle"
+                <a
+                  href="#"
+                  class="btn btn-outline-light btn-theme-toggle add-to-cart"
                   >Add To Cart</a
                 >
               </div>
@@ -648,11 +763,65 @@
     </div>
     <div style="height: 100px"></div>
 
-    <!-- Improved Footer -->
+    <hr style="border-top: 1px solid #555; width: 80%; margin: 3rem auto" />
+    <div class="container my-5">
+      <h2 class="fw-bold letter-spacing text-center mb-5">
+        WHAT OUR ATHLETES SAY
+      </h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="testimonial-card">
+            <img
+              src="https://www.w3schools.com/howto/img_avatar.png"
+              class="testimonial-img"
+              alt="Athlete 1"
+            />
+            <p class="lead mb-3">
+              "VantaFuel supplements have completely transformed my training. I
+              feel stronger and recover faster!"
+            </p>
+            <p class="fw-bold">- Alex "The Machine" Johnson</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="testimonial-card">
+            <img
+              src="https://www.w3schools.com/howto/img_avatar2.png"
+              class="testimonial-img"
+              alt="Athlete 2"
+            />
+            <p class="lead mb-3">
+              "The quality and effectiveness of VantaFuel products are
+              unmatched. Highly recommend for serious athletes."
+            </p>
+            <p class="fw-bold">- Sarah "Ironwoman" Chen</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="testimonial-card">
+            <img
+              src="https://www.w3schools.com/w3images/avatar6.png"
+              class="testimonial-img"
+              alt="Athlete 3"
+            />
+            <p class="lead mb-3">
+              "Finally, supplements that deliver on their promise. VantaFuel is
+              now an essential part of my regimen."
+            </p>
+            <p class="fw-bold">- Mike "The Beast" Ramirez</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 50px"></div>
+
+    <div class="cart-notification" id="cartNotification">
+      <i class="bi bi-bag-check-fill"></i> Item added to cart!
+    </div>
+
     <footer id="footer" class="py-5 bg-black text-white">
       <div class="container">
         <div class="row">
-          <!-- Newsletter Column -->
           <div class="col-md-4 mb-4 mb-md-0">
             <h5 class="text-uppercase mb-4">Join Our Newsletter</h5>
             <p class="small text-white">
@@ -675,7 +844,6 @@
             </div>
           </div>
 
-          <!-- Quick Links Column -->
           <div class="col-md-2 mb-4 mb-md-0">
             <h5 class="text-uppercase mb-4">Quick Links</h5>
             <ul class="list-unstyled">
@@ -709,7 +877,6 @@
             </ul>
           </div>
 
-          <!-- Contact Column -->
           <div class="col-md-3 mb-4 mb-md-0">
             <h5 class="text-uppercase mb-4">Contact Us</h5>
             <ul class="list-unstyled">
@@ -725,7 +892,6 @@
             </ul>
           </div>
 
-          <!-- Social Media Column -->
           <div class="col-md-3">
             <h5 class="text-uppercase mb-4">Follow Us</h5>
             <div class="mb-4">
@@ -756,7 +922,7 @@
         <div class="row">
           <div class="col-md-6 text-center text-md-start">
             <p class="small mb-0">
-              © 2025 ZeyadAbdulfattah Supplements. All rights reserved.
+              © 2025 VantaFuel Supplements. All rights reserved.
             </p>
           </div>
           <div class="col-md-6 text-center text-md-end">
@@ -783,6 +949,9 @@
       document.addEventListener("DOMContentLoaded", function () {
         const themeToggle = document.getElementById("themeToggle");
         const body = document.body;
+        const mainNavbar = document.getElementById("mainNavbar");
+        const cartNotification = document.getElementById("cartNotification");
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
 
         // Check for saved theme preference or use preferred color scheme
         const savedTheme = localStorage.getItem("theme");
@@ -845,10 +1014,89 @@
         document.querySelectorAll(".product-card").forEach((card) => {
           observer.observe(card);
         });
+
+        // Sticky Navbar with background fade
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            // Adjust this value as needed
+            mainNavbar.classList.add("scrolled");
+          } else {
+            mainNavbar.classList.remove("scrolled");
+          }
+        });
+
+        // Add-to-Cart Animation
+        addToCartButtons.forEach((button) => {
+          button.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior for now
+            cartNotification.classList.add("show");
+            setTimeout(() => {
+              cartNotification.classList.remove("show");
+            }, 2000); // Notification visible for 2 seconds
+            // In a real scenario, you'd add the item to a cart object/array here
+            // For the fake checkout, we'll eventually redirect to a cart page.
+            // For now, we keep it as a simple animation.
+          });
+        });
+
+        // Category Filters
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const productItems = document.querySelectorAll(".product-item");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Remove active state from all buttons
+            filterButtons.forEach((btn) =>
+              btn.classList.remove("active", "btn-dark", "btn-light")
+            );
+
+            // Add active state to the clicked button
+            if (body.classList.contains("light-mode")) {
+              this.classList.add("active", "btn-dark");
+            } else {
+              this.classList.add("active", "btn-light");
+            }
+
+            const filter = this.dataset.filter;
+
+            productItems.forEach((item) => {
+              if (filter === "all" || item.dataset.category === filter) {
+                item.style.display = "block"; // Show the item
+              } else {
+                item.style.display = "none"; // Hide the item
+              }
+            });
+          });
+        });
+
+        // Set initial active state for "All" filter button
+        document.querySelector('.filter-btn[data-filter="all"]').click();
+
+        // Fake Checkout Flow (Conceptual - requires new HTML files)
+        // For demonstration, let's make the "Add To Cart" buttons *eventually* lead to a mock cart page.
+        // You would create cart.html, checkout.html, confirmation.html
+        // For now, the animation is the primary focus.
+        // If you were to implement this, you'd change the 'href' of the 'Add To Cart' links
+        // or use JavaScript to redirect after adding to a conceptual cart array.
+        // Example:
+        // addToCartButtons.forEach(button => {
+        //     button.addEventListener('click', function(event) {
+        //         event.preventDefault();
+        //         // Simulate adding to cart (e.g., store in localStorage)
+        //         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        //         const productName = this.closest('.product-card').querySelector('.card-title').innerText;
+        //         cart.push(productName); // Simple add
+        //         localStorage.setItem('cart', JSON.stringify(cart));
+        //         cartNotification.classList.add('show');
+        //         setTimeout(() => {
+        //             cartNotification.classList.remove('show');
+        //             window.location.href = 'cart.html'; // Redirect to cart page
+        //         }, 2000);
+        //     });
+        // });
       });
     </script>
 
-    <!-- Animate.css for additional animations -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
